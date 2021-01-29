@@ -17,25 +17,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cx3-uH-FBS">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="773"/>
                             </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dv0-V2-yIN">
+                                <rect key="frame" x="20" y="825" width="374" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="nYM-qQ-OGD"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="cтандарт"/>
+                                    <segment title="спутник"/>
+                                    <segment title="гибрид"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cx3-uH-FBS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4Y0-rx-wr0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cx3-uH-FBS" secondAttribute="bottom" id="GeO-Q0-cfK"/>
+                            <constraint firstItem="Dv0-V2-yIN" firstAttribute="top" secondItem="cx3-uH-FBS" secondAttribute="bottom" constant="5" id="Fvb-2g-cUN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Dv0-V2-yIN" secondAttribute="bottom" constant="10" id="UWr-L8-yLI"/>
                             <constraint firstItem="cx3-uH-FBS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dOc-yi-teL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Dv0-V2-yIN" secondAttribute="trailing" constant="20" id="f16-Zg-cu4"/>
+                            <constraint firstItem="Dv0-V2-yIN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="nvT-u9-2pj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cx3-uH-FBS" secondAttribute="trailing" id="uUc-HY-Bsn"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="cx3-uH-FBS" id="5os-RO-ZzX"/>
+                        <outlet property="pageControllMap" destination="Dv0-V2-yIN" id="ese-IJ-PSp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="43" y="138"/>
+            <point key="canvasLocation" x="42.028985507246382" y="137.94642857142856"/>
         </scene>
     </scenes>
     <resources>

@@ -11,9 +11,11 @@ import CoreLocation
 
 class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate{
     
+    
+    @IBOutlet weak var pageControllMap: UISegmentedControl!
     @IBOutlet weak var mapView : MKMapView!
     private let locationManager = CLLocationManager()
-    private var userLocation = CLLocation()
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,14 +28,27 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         self.mapView.showsUserLocation = true
+        self.pageControllMap.addTarget(self, action: #selector(mapTypeChanged), for: .valueChanged)
+    }
+    
+    @objc func mapTypeChanged(segmentControl:UISegmentedControl){
+        switch(segmentControl.selectedSegmentIndex){
+        case 0 : mapView.mapType = .standard
+        case 1 : mapView.mapType = .satellite
+        case 2 : mapView.mapType = .hybrid
+        default:
+            break
+        }
     }
     
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let lastLocation = locations.last
-        userLocation = lastLocation!
+       
     }
     
+    
+    //Привязывает вид карты к положению userLocation 
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         let coordinate2D = userLocation.coordinate
         //coordinateSpan увеличивает местоположение

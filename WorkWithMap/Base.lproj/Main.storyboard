@@ -16,11 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nYx-6M-U60">
+                                <rect key="frame" x="0.0" y="805" width="414" height="91"/>
+                                <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.82745098039999998" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="91" id="Y7H-XZ-fqE"/>
+                                </constraints>
+                            </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cx3-uH-FBS">
-                                <rect key="frame" x="0.0" y="44" width="414" height="773"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="827"/>
                             </mapView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dv0-V2-yIN">
                                 <rect key="frame" x="20" y="825" width="374" height="32"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="nYM-qQ-OGD"/>
                                 </constraints>
@@ -30,14 +38,33 @@
                                     <segment title="гибрид"/>
                                 </segments>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0T-Cr-fgb">
+                                <rect key="frame" x="284" y="38" width="120" height="30"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="CsY-T3-dBA"/>
+                                    <constraint firstAttribute="height" constant="30" id="rlq-zS-aOs"/>
+                                </constraints>
+                                <state key="normal" title="Add annotation">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addAnnotationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CJw-pR-hY9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="nYx-6M-U60" secondAttribute="bottom" id="2WF-c6-sjl"/>
                             <constraint firstItem="cx3-uH-FBS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4Y0-rx-wr0"/>
+                            <constraint firstItem="H0T-Cr-fgb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="38" id="8Kv-O7-ZDS"/>
                             <constraint firstItem="Dv0-V2-yIN" firstAttribute="top" secondItem="cx3-uH-FBS" secondAttribute="bottom" constant="5" id="Fvb-2g-cUN"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Dv0-V2-yIN" secondAttribute="bottom" constant="10" id="UWr-L8-yLI"/>
-                            <constraint firstItem="cx3-uH-FBS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dOc-yi-teL"/>
+                            <constraint firstItem="nYx-6M-U60" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="R56-n2-FdF"/>
+                            <constraint firstAttribute="trailing" secondItem="H0T-Cr-fgb" secondAttribute="trailing" constant="10" id="S6T-Ej-y1i"/>
+                            <constraint firstItem="nYx-6M-U60" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Tay-ml-m12"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Dv0-V2-yIN" secondAttribute="bottom" id="UWr-L8-yLI"/>
+                            <constraint firstItem="cx3-uH-FBS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dOc-yi-teL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Dv0-V2-yIN" secondAttribute="trailing" constant="20" id="f16-Zg-cu4"/>
                             <constraint firstItem="Dv0-V2-yIN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="nvT-u9-2pj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cx3-uH-FBS" secondAttribute="trailing" id="uUc-HY-Bsn"/>
@@ -56,6 +83,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

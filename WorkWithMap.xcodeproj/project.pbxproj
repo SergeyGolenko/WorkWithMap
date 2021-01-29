@@ -13,6 +13,7 @@
 		2CDB035425C4271000A17E3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CDB035225C4271000A17E3D /* Main.storyboard */; };
 		2CDB035625C4271100A17E3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CDB035525C4271100A17E3D /* Assets.xcassets */; };
 		2CDB035925C4271100A17E3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CDB035725C4271100A17E3D /* LaunchScreen.storyboard */; };
+		2CDB036325C4547000A17E3D /* CoffeeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB036225C4547000A17E3D /* CoffeeAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2CDB035525C4271100A17E3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CDB035825C4271100A17E3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2CDB035A25C4271100A17E3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CDB036225C4547000A17E3D /* CoffeeAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				2CDB034C25C4271000A17E3D /* AppDelegate.swift */,
 				2CDB034E25C4271000A17E3D /* SceneDelegate.swift */,
 				2CDB035025C4271000A17E3D /* ViewController.swift */,
+				2CDB036225C4547000A17E3D /* CoffeeAnnotation.swift */,
 				2CDB035225C4271000A17E3D /* Main.storyboard */,
 				2CDB035525C4271100A17E3D /* Assets.xcassets */,
 				2CDB035725C4271100A17E3D /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CDB036325C4547000A17E3D /* CoffeeAnnotation.swift in Sources */,
 				2CDB035125C4271000A17E3D /* ViewController.swift in Sources */,
 				2CDB034D25C4271000A17E3D /* AppDelegate.swift in Sources */,
 				2CDB034F25C4271000A17E3D /* SceneDelegate.swift in Sources */,

@@ -26,7 +26,14 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
         }
         let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
             if let textField = alertVC.textFields?.first {
-                // reverse geocode the address
+                // address
+                self.reverseGeocode(address: textField.text!) { (placemark) in
+                    
+                    let destinationPlacemark = MKPlacemark(coordinate: placemark.location!.coordinate)
+                     let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+                    MKMapItem.openMaps(with: [destinationMapItem], launchOptions: nil)
+                }
+            
                 
             }
         }
@@ -51,6 +58,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
         locationManager.startUpdatingLocation()
         self.mapView.showsUserLocation = true
         self.pageControllMap.addTarget(self, action: #selector(mapTypeChanged), for: .valueChanged)
+        addPointOfInterest()
+        
     }
     
     @objc func mapTypeChanged(segmentControl:UISegmentedControl){
@@ -61,6 +70,56 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
         default:
             break
         }
+    }
+    
+    private func addPointOfInterest(){
+        let annotation = MKPointAnnotation()
+       // annotation.imageURL = "pointCoffee"
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 37.334395, longitude: -122.040012)
+        self.mapView.addAnnotation(annotation)
+       self.mapView.addOverlay(MKCircle(center: annotation.coordinate, radius: 500))
+        let region = CLCircularRegion(center: annotation.coordinate, radius: 500, identifier: "coffee")
+        region.notifyOnEntry = true
+        region.notifyOnExit = true
+        self.locationManager.startMonitoring(for: region)
+    }
+    
+    private func reverseGeocode(address:String,completion: @escaping(CLPlacemark) -> ()){
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+                return
+            }
+            guard let placemarks = placemarks,
+                  let placemark = placemarks.first else {return}
+           completion(placemark)
+        }
+        
+    }
+    
+    private func addPlacemarkToMap(placemark:CLPlacemark){
+        let coordinate = placemark.location?.coordinate
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate!
+        self.mapView.addAnnotation(annotation)
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("Я ТУТА")
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKCircle {
+            var circleRenderer = MKCircleRenderer(circle: overlay as! MKCircle)
+            circleRenderer.lineWidth = 1.0
+            circleRenderer.strokeColor = .red
+            circleRenderer.fillColor = .purple
+            circleRenderer.alpha = 0.4
+            return circleRenderer
+        }
+        return MKOverlayRenderer()
     }
     
 
@@ -79,51 +138,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
         var region = MKCoordinateRegion(center: coordinate2D, span: coordinateSpan)
         mapView.setRegion(region, animated: true)
     }
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        if annotation is MKUserLocation{
-//            var userView = mapView.dequeueReusableAnnotationView(withIdentifier: "car")
-//            if userView == nil {
-//                userView = MKAnnotationView(annotation: annotation, reuseIdentifier: "car")
-//                userView?.canShowCallout = true
-//            } else {
-//                userView?.annotation = annotation
-//            }
-//            userView?.image = UIImage(named: "car")
-//            return userView
-//        }
-        
-        if annotation is MKUserLocation {
-            return nil
-        }
-        
-        var coffeeAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "CoffeeAnnotationView")
-        if coffeeAnnotationView == nil {
-            coffeeAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "CoffeeAnnotationView")
-            coffeeAnnotationView?.canShowCallout = true
-        } else {
-            coffeeAnnotationView?.annotation = annotation
-        }
-        if let coffeeAnnotation = annotation as? CoffeeAnnotation {
-            coffeeAnnotationView?.image = UIImage(named: coffeeAnnotation.imageURL)
-        }
-        //configureView(coffeeAnnotationView)
-        return coffeeAnnotationView
-    }
-    
-//    private func configureView(_ annotationView :MKAnnotationView?) {
-//
-//        let view = UIView(frame: CGRect.zero)
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.widthAnchor.constraint(equalToConstant: 200).isActive = true
-//        view.heightAnchor.constraint(equalToConstant: 200).isActive = true
-//        view.backgroundColor = UIColor.red
-//
-//        annotationView?.leftCalloutAccessoryView = UIImageView(image: UIImage(named :"car"))
-//        annotationView?.rightCalloutAccessoryView = UIImageView(image: UIImage(named :"pointCoffee"))
-//        annotationView?.detailCalloutAccessoryView = view
-//
-//    }
+
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         view.subviews.forEach{ subView in
@@ -139,3 +154,53 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
 
 }
 
+
+
+
+
+
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        if annotation is MKUserLocation{
+//            var userView = mapView.dequeueReusableAnnotationView(withIdentifier: "car")
+//            if userView == nil {
+//                userView = MKAnnotationView(annotation: annotation, reuseIdentifier: "car")
+//                userView?.canShowCallout = true
+//            } else {
+//                userView?.annotation = annotation
+//            }
+//            userView?.image = UIImage(named: "car")
+//            return userView
+//        }
+//
+//        if annotation is MKUserLocation {
+//            return nil
+//        }
+//
+//        var coffeeAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "CoffeeAnnotationView")
+//        if coffeeAnnotationView == nil {
+//            coffeeAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "CoffeeAnnotationView")
+//            coffeeAnnotationView?.canShowCallout = true
+//        } else {
+//            coffeeAnnotationView?.annotation = annotation
+//        }
+//        if let coffeeAnnotation = annotation as? CoffeeAnnotation {
+//            coffeeAnnotationView?.image = UIImage(named: coffeeAnnotation.imageURL)
+//            return coffeeAnnotationView
+//        }
+//        //configureView(coffeeAnnotationView)
+//        return MKAnnotationView()
+//    }
+
+//    private func configureView(_ annotationView :MKAnnotationView?) {
+//
+//        let view = UIView(frame: CGRect.zero)
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.widthAnchor.constraint(equalToConstant: 200).isActive = true
+//        view.heightAnchor.constraint(equalToConstant: 200).isActive = true
+//        view.backgroundColor = UIColor.red
+//
+//        annotationView?.leftCalloutAccessoryView = UIImageView(image: UIImage(named :"car"))
+//        annotationView?.rightCalloutAccessoryView = UIImageView(image: UIImage(named :"pointCoffee"))
+//        annotationView?.detailCalloutAccessoryView = view
+//
+//    }

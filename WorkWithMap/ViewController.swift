@@ -20,13 +20,22 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
     
     
     @IBAction func addAnnotationButton(_ sender: UIButton) {
-        
-        let newCoordinate = userCoordinateForNewAnnotation
-        let myAnnotation = CoffeeAnnotation()
-        myAnnotation.imageURL = "pointCoffee"
-        myAnnotation.coordinate = userCoordinateForNewAnnotation
-        myAnnotation.title = "good day"
-        self.mapView.addAnnotation(myAnnotation)
+        let alertVC = UIAlertController(title: "Add Address", message:nil, preferredStyle: .alert)
+        alertVC.addTextField { (textField) in
+            
+        }
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            if let textField = alertVC.textFields?.first {
+                // reverse geocode the address
+                
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            
+        }
+        alertVC.addAction(okAction)
+        alertVC.addAction(cancelAction)
+        self.present(alertVC, animated: true, completion: nil)
     }
     
 

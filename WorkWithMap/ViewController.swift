@@ -25,6 +25,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
         let myAnnotation = CoffeeAnnotation()
         myAnnotation.imageURL = "pointCoffee"
         myAnnotation.coordinate = userCoordinateForNewAnnotation
+        myAnnotation.title = "good day"
         self.mapView.addAnnotation(myAnnotation)
     }
     
@@ -71,16 +72,20 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation{
-            var userView = mapView.dequeueReusableAnnotationView(withIdentifier: "car")
-            if userView == nil {
-                userView = MKAnnotationView(annotation: annotation, reuseIdentifier: "car")
-                userView?.canShowCallout = true
-            } else {
-                userView?.annotation = annotation
-            }
-            userView?.image = UIImage(named: "car")
-            return userView
+//        if annotation is MKUserLocation{
+//            var userView = mapView.dequeueReusableAnnotationView(withIdentifier: "car")
+//            if userView == nil {
+//                userView = MKAnnotationView(annotation: annotation, reuseIdentifier: "car")
+//                userView?.canShowCallout = true
+//            } else {
+//                userView?.annotation = annotation
+//            }
+//            userView?.image = UIImage(named: "car")
+//            return userView
+//        }
+        
+        if annotation is MKUserLocation {
+            return nil
         }
         
         var coffeeAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "CoffeeAnnotationView")

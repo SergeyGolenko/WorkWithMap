@@ -8,6 +8,5 @@
 import MapKit
 
 class CoffeeAnnotation : MKPointAnnotation {
-    
     var imageURL : String!
 }

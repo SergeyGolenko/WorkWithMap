@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CC11AFE25C80336001F18B1 /* CoffeeCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC11AFD25C80336001F18B1 /* CoffeeCalloutView.swift */; };
 		2CDB034D25C4271000A17E3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB034C25C4271000A17E3D /* AppDelegate.swift */; };
 		2CDB034F25C4271000A17E3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB034E25C4271000A17E3D /* SceneDelegate.swift */; };
 		2CDB035125C4271000A17E3D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB035025C4271000A17E3D /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2CC11AFD25C80336001F18B1 /* CoffeeCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeCalloutView.swift; sourceTree = "<group>"; };
 		2CDB034925C4271000A17E3D /* WorkWithMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkWithMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CDB034C25C4271000A17E3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CDB034E25C4271000A17E3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				2CDB034C25C4271000A17E3D /* AppDelegate.swift */,
 				2CDB034E25C4271000A17E3D /* SceneDelegate.swift */,
 				2CDB035025C4271000A17E3D /* ViewController.swift */,
+				2CC11AFD25C80336001F18B1 /* CoffeeCalloutView.swift */,
 				2CDB036225C4547000A17E3D /* CoffeeAnnotation.swift */,
 				2CDB035225C4271000A17E3D /* Main.storyboard */,
 				2CDB035525C4271100A17E3D /* Assets.xcassets */,
@@ -144,6 +147,7 @@
 				2CDB035125C4271000A17E3D /* ViewController.swift in Sources */,
 				2CDB034D25C4271000A17E3D /* AppDelegate.swift in Sources */,
 				2CDB034F25C4271000A17E3D /* SceneDelegate.swift in Sources */,
+				2CC11AFE25C80336001F18B1 /* CoffeeCalloutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

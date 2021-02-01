@@ -71,9 +71,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
         if annotation is MKUserLocation{
-            
             var userView = mapView.dequeueReusableAnnotationView(withIdentifier: "car")
             if userView == nil {
                 userView = MKAnnotationView(annotation: annotation, reuseIdentifier: "car")
@@ -85,9 +83,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
             return userView
         }
         
-        
         var coffeeAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "CoffeeAnnotationView")
-        
         if coffeeAnnotationView == nil {
             coffeeAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "CoffeeAnnotationView")
             coffeeAnnotationView?.canShowCallout = true
@@ -97,21 +93,34 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
         if let coffeeAnnotation = annotation as? CoffeeAnnotation {
             coffeeAnnotationView?.image = UIImage(named: coffeeAnnotation.imageURL)
         }
-        configureView(coffeeAnnotationView)
+        //configureView(coffeeAnnotationView)
         return coffeeAnnotationView
     }
     
-    private func configureView(_ annotationView :MKAnnotationView?) {
-        let view = UIView(frame: CGRect.zero)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        view.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        view.backgroundColor = UIColor.red
-        
-        annotationView?.leftCalloutAccessoryView = UIImageView(image: UIImage(named :"pointCoffee"))
-        annotationView?.rightCalloutAccessoryView = UIImageView(image: UIImage(named :"car"))
-        annotationView?.detailCalloutAccessoryView = view
-        
+//    private func configureView(_ annotationView :MKAnnotationView?) {
+//
+//        let view = UIView(frame: CGRect.zero)
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.widthAnchor.constraint(equalToConstant: 200).isActive = true
+//        view.heightAnchor.constraint(equalToConstant: 200).isActive = true
+//        view.backgroundColor = UIColor.red
+//
+//        annotationView?.leftCalloutAccessoryView = UIImageView(image: UIImage(named :"car"))
+//        annotationView?.rightCalloutAccessoryView = UIImageView(image: UIImage(named :"pointCoffee"))
+//        annotationView?.detailCalloutAccessoryView = view
+//
+//    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        view.subviews.forEach{ subView in
+            subView.removeFromSuperview()
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation as? CoffeeAnnotation else {return}
+        let coffeeCalloutView = CoffeeCalloutView(annotation: annotation)
+        coffeeCalloutView.add(to: view)
     }
 
 }
